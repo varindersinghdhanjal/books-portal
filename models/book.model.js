@@ -2,9 +2,17 @@ var mongoose = require('mongoose');
 
 var BookSchema = mongoose.Schema({
 	name: { type: String },
-	author: { type : String },
-	copiesSold : { type: Number }
-	// String, Number
+	// name: String,
+	// String, Boolean, Number, Date, Array, Object
+	author: { 
+		type : mongoose.Types.ObjectId, 
+		ref: 'Author' 
+	},
+	copiesSold : { type: Number },
+	names: [{
+		name: String,
+	}],
+	publishingDate : { type: Date, default: Date.now }
 });
 
 // console.log(BookSchema);

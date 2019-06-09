@@ -27,17 +27,20 @@
       <tr>
         <th>BOOK NAME:</th>
         <th>AUTHOR NAME:</th>
-        <th>CATEGORY:</th>
+        <th>Copies Sold:</th>
         <th>ACTION</th>
       </tr>
     </thead>
     <tbody>
+      
+      {{#each data}}
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{this.name}}</td>
+        <td>{{this.author}}</td>
+        <td>{{this.copiesSold}}</td>
         <td></td>
       </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>

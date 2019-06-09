@@ -2,7 +2,12 @@ var mongoose = require('mongoose');
 
 var AuthorSchema = mongoose.Schema({
 	name: { type: String },
-	age: { type : Number }
+	age: { type : Number },
+	// book: {
+	// 	type: mongoose.Types.ObjectId,
+	// 	ref: 'Book'
+	// }
+	entries: [{ name: String, email: String }]
 	// String, Number
 });
 

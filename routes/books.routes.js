@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 const Book = require('../models/book.model');
+const Author = require('../models/author.model');
 
 router.get('/', (req, res) => {
-	Book.find().then((result) => {	
+	Book.find().populate('author').then((result) => {	
 		res.json({
 			data: result
 		})
-	})	
+	})
 })
 
 
@@ -18,13 +19,34 @@ router.get('/:bookId', (req, res) => {
 	// 	res.json({
 	// 		data: result
 	// 	})
-	// })	
+	// })
 
-	Book.findById(book).then((result) => {
+
+	// Book.findById(book).then((result) => {
+	// 	var book = result;
+	// 	var authorId = book.author;
+
+	// 	Author.findById(authorId).then((author) => {
+	// 		console.log(author);
+
+	// 		book.author = author;
+			
+	// 		res.json({
+	// 			data: book
+	// 		})
+	// 	});
+
+	// })
+
+	Book.findById(book).populate('author').then((result) => {
+			
 		res.json({
 			data: result
 		})
+
 	})
+
+
 
 })
 
@@ -62,5 +84,17 @@ router.delete('/:bookId', (req, res) => {
 		res.json({result});
 	})
 })
+
+router.post('/:bookId/entries', (req, res) => {
+	var bookId = req.params.bookId;
+	var entry = req.body;
+	Book.findById(bookId).then((book) => {
+		book.entries.push(entry);
+		book.save().then((result) => {
+			res.json({book});	
+		});
+		// res.json({result});
+	})
+});
 
 module.exports = router;

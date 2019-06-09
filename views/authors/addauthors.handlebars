@@ -26,18 +26,19 @@
     <thead>
       <tr>
         <th>AUTHOR NAME:</th>
-		<th>AUTHOR AGE:</th>
-        <th>CATEGORY:</th>
+  		<th>AUTHOR AGE:</th>
         <th>ACTION</th>
       </tr>
     </thead>
     <tbody>
+      {{#each data}}
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{this.name}}</td>
+        <td>{{this.age}}</td>
         <td></td>
       </tr>
+      {{/each}}
+
     </tbody>
   </table>
 </div>
